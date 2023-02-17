@@ -22,5 +22,26 @@ class Peoples:
     def create_user(cls, data):
         query = """INSERT INTO users (first_name,last_name,email)
                     VALUES( %(first_name)s, %(last_name)s, %(email)s)"""
+        return connectToMySQL("users_schema").query_db(query,data)
+        
+
+    @classmethod
+    def get_one(cls, id):
+        query = "SELECT * FROM users WHERE id = %(id)s"
+        results = connectToMySQL("users_schema").query_db(query,{"id":id})
+        return cls(results[0])
+
+    @classmethod
+    def update_user(cls,data):
+        query = """UPDATE users
+        SET first_name = %(first_name)s, last_name = %(last_name)s, email = %(email)s, updated_at = now()
+        WHERE id = %(id)s"""
         results = connectToMySQL("users_schema").query_db(query,data)
+        return results
+
+    @classmethod
+    def delete_user(cls,id):
+
+        query = "DELETE FROM users WHERE id = %(id)s"
+        results = connectToMySQL("users_schema").query_db(query,{"id":id})
         return results

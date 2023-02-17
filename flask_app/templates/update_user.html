@@ -5,26 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Add A User!</title>
+    <title>Update User</title>
 </head>
 <body>
     <div class="d-flex justify-content-between align-items-center mx-4 my-2">
-        <h1>Add a New User</h1>
+        <h1>Edit {{user.first_name}}'s Profile</h1>
         <a class="btn btn-primary " href="/">Home</a>
     </div>
-    <form action="/create_user" method="POST">
+    <form action="/save_update" method="POST">
             <div class="d-flex flex-column mx-4 w-50">
             <label for="first_name">First Name:</label>
-            <input type="text" name="first_name">
+            <input type="text" name="first_name" value="{{user.first_name}}">
             <label for="last_name">Last Name:</label>
-            <input type="text" name="last_name">
+            <input type="text" name="last_name" value="{{user.last_name}}">
             <label for="email">Email:</label>
-            <input type="text" name="email">
-            <input type="hidden" name="id" value="id">
-            <button type="submit" class="btn btn-primary mt-3" style="width: 120px;">Add A User!</button>
+            <input type="text" name="email" value="{{user.email}}">
+            <input type="hidden" value="{{user.id}}" name="id">
+            <button type="submit" class="btn btn-primary mt-3" style="width: 120px;">Update User!</button>
         </div>
     </form>
-
-
 </body>
 </html>
